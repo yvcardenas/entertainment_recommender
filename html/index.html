@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Flask App</title>
+</head>
+<body>
+    <h1>Welcome to My Flask App!</h1>
+    {% if current_user %}
+    <p>Current User: {{ current_user }}</p>
+    <a href="{{ url_for('add_preference') }}">Add Preference</a>
+    <a href="{{ url_for('recommendations') }}">Get Recommendations</a>
+    {% else %}
+    <form action="{{ url_for('add_user') }}" method="POST">
+        <label for="username">Enter Username:</label>
+        <input type="text" id="username" name="username" required>
+        <button type="submit">Set User</button>
+    </form>
+    {% endif %}
+</body>
+</html>
