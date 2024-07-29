@@ -11,7 +11,7 @@ user_data_path = 'user_data'
 os.makedirs(user_data_path, exist_ok=True)
 
 # Placeholder for OpenAI key and function
-# openai_api_key = 'sk-proj-hlo7uWhbRrVBpVFX9bcvT3BlbkFJhwXCMq75Er74UQBPzEwb'
+openai_api_key = 'sk-proj-hlo7uWhbRrVBpVFX9bcvT3BlbkFJhwXCMq75Er74UQBPzEwb'
 openai.api_key = openai_api_key
 
 def get_chatgpt_recommendations(preferences):
