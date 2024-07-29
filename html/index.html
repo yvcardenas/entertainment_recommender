@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Entertainment Recommendations</title>
+    <link rel="icon" type="image/x-icon" href="../er_logo.png"/>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
@@ -16,8 +18,8 @@
         </nav>
     </div>
     <div class="container">
-        <h1>Welcome {{ current_user }}!</h1>
         {% if current_user %}
+            <h1>Welcome {{ current_user }}!</h1>
             <div class="preferences-container">
                 {% if user_preferences %}
                     <h2>Your Preferences</h2>
@@ -46,6 +48,7 @@
                 <button type="submit">Set User</button>
             </form>
         {% else %}
+            <h1>Welcome!</h1>
             <form action="{{ url_for('index') }}" method="POST" class="user-form">
                 <label for="username">Enter Username:</label>
                 <input type="text" id="username" name="username" required>

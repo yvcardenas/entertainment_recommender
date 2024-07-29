@@ -174,10 +174,13 @@ button:hover {
 /* Preferences Container */
 .preferences-container {
     margin-top: 40px;
-    padding: 30px;
+    /* padding: 30px; */
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 675px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 .preferences-container h2 {
