@@ -1,0 +1,227 @@
+/* Reset some default styles */
+body, h1, h2, h3, p, ul, li, a, img, div, span {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    box-sizing: border-box;
+}
+
+/* General Styles */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #F9F8F4;
+    color: #333;
+    padding: 20px;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+a:hover {
+    color: burlywood;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header, .footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #F9F8F4;
+    border-bottom: 1px solid #E0E0E0;
+}
+
+.header .logo {
+    font-size: 2em;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.header nav {
+    margin-top: 10px;
+}
+
+.header nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+.header nav ul li {
+    margin: 0 15px;
+}
+
+.header nav ul li a {
+    font-size: 1em;
+    text-transform: uppercase;
+}
+
+.main-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding: 20px 0;
+}
+
+.section {
+    flex: 1;
+    min-width: 300px;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.section img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.section h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.section p {
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+.footer p {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.contact-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 25px;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.contact-button:hover {
+    background-color: #555;
+}
+h1, h2, h3 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+p, label {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+form {
+    margin-top: 20px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"], select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    margin-top: 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+/* Preferences Container */
+.preferences-container {
+    margin-top: 40px;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.preferences-container h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 1.8em;
+}
+
+.preferences-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.preferences-list li {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    color: #333;
+    list-style: none;
+}
+
+.preferences-list strong {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1.2em;
+}
+
+/* Recommendations Styles */
+.recommendations-section {
+    margin-top: 20px;
+}
+
+.recommendation-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    border-bottom: 1px solid #E0E0E0;
+}
+
+.recommendation-item h2 {
+    font-size: 1.5em;
+    /* margin-bottom: 10px; */
+    color: #333;
+}
+
+.recommendation-item p {
+    font-size: 1.1em;
+    color: #555;
+}

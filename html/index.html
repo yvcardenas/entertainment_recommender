@@ -1,20 +1,60 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Flask App</title>
+    <title>Entertainment Recommendations</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Welcome to My Flask App!</h1>
-    {% if current_user %}
-    <p>Current User: {{ current_user }}</p>
-    <a href="{{ url_for('add_preference') }}">Add Preference</a>
-    <a href="{{ url_for('recommendations') }}">Get Recommendations</a>
-    {% else %}
-    <form action="{{ url_for('add_user') }}" method="POST">
-        <label for="username">Enter Username:</label>
-        <input type="text" id="username" name="username" required>
-        <button type="submit">Set User</button>
-    </form>
-    {% endif %}
+    <div class="header">
+        <div class="logo">Entertainment Recommender</div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('add_preference') }}">Add Preference</a></li>
+                <li><a href="{{ url_for('recommendations') }}">Get Recommendations</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="container">
+        <h1>Welcome {{ current_user }}!</h1>
+        {% if current_user %}
+            <div class="preferences-container">
+                {% if user_preferences %}
+                    <h2>Your Preferences</h2>
+                    <ul class="preferences-list">
+                        {% for category, items in user_preferences.items() %}
+                            <li><strong>{{ category.capitalize() }}</strong></li>
+                            <ul>
+                                {% for item in items %}
+                                    <li>{{ item['title'] }} ({{ item['genre'] }})
+                                        {% if 'author' in item %}, by {{ item['author'] }}
+                                        {% elif 'director' in item %}, directed by {{ item['director'] }}
+                                        {% elif 'artist' in item %}, by {{ item['artist'] }}
+                                        {% endif %}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>You have not added any preferences yet.</p>
+                {% endif %}
+            </div>
+            <form action="{{ url_for('index') }}" method="POST" class="user-form">
+                <label for="username">Change Username:</label>
+                <input type="text" id="username" name="username" required>
+                <button type="submit">Set User</button>
+            </form>
+        {% else %}
+            <form action="{{ url_for('index') }}" method="POST" class="user-form">
+                <label for="username">Enter Username:</label>
+                <input type="text" id="username" name="username" required>
+                <button type="submit">Set User</button>
+            </form>
+        {% endif %}
+    </div>
+    <div class="footer">
+        <p>&copy; 2024 Entertainment Recommender</p>
+    </div>
 </body>
 </html>

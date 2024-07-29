@@ -3,36 +3,57 @@ import json
 import openai
 import os
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='./html')
 app.secret_key = 'supersecretkey'
 user_data_path = 'user_data'
 
 # Ensure user_data directory exists
 os.makedirs(user_data_path, exist_ok=True)
 
-# Placeholder for your OpenAI key and function
-openai_api_key = 'your_openai_api_key'
+# Placeholder for OpenAI key and function
+# openai_api_key = 'sk-proj-hlo7uWhbRrVBpVFX9bcvT3BlbkFJhwXCMq75Er74UQBPzEwb'
 openai.api_key = openai_api_key
 
 def get_chatgpt_recommendations(preferences):
     # Implement the function using OpenAI API
-    prompt = "Based on the following preferences, recommend a book, movie, and song:\n"
+    prompt = "Based on the following preferences, recommend one book, one movie, and one song:\n"
     for category, items in preferences.items():
         prompt += f"{category.capitalize()}:\n"
         prompt += ''.join([f" - {item['title']} ({item['genre']})\n" for item in items])
 
-    response = openai.Completion.create(
-        model="text-davinci-003",
-        prompt=prompt,
-        max_tokens=100
-    )
-    recommendations = response.choices[0].text.strip()
+    try:
+        response = openai.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": prompt}
+            ],
+            max_tokens=100
+        )
+        print("API Response:", response)
+        if response.choices and len(response.choices) > 0:
+            recommendations = response.choices[0].message.content
+        else:
+            recommendations = "No recommendations available."
+    except Exception as e:
+        print(f"Error getting recommendations: {e}")
+        recommendations = "An error occurred while getting recommendations."
     return recommendations
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
     current_user = session.get('current_user')
-    return render_template('index.html', current_user=current_user)
+    user_preferences= None
+
+    if current_user:
+        user_preferences = load_preferences(current_user)
+
+    if request.method == 'POST':
+        username = request.form['username']
+        session['current_user'] = username
+        return redirect(url_for('index'))
+    
+    return render_template('index.html', current_user=current_user, user_preferences=user_preferences)
 
 @app.route('/add_user', methods=['POST'])
 def add_user():
@@ -71,6 +92,10 @@ def recommendations():
 
     current_user = session['current_user']
     user_preferences = load_preferences(current_user)
+
+    if not any(user_preferences.values()):
+        message = "No preferences found. Please add some preferences first."
+        return render_template('recommendations.html', message=message)
     recommendations = get_chatgpt_recommendations(user_preferences)
     return render_template('recommendations.html', recommendations=recommendations)
 
@@ -86,5 +111,5 @@ def load_preferences(username):
             return json.load(file)
     return {'books': [], 'movies': [], 'songs': []}
 
-# if __name__ == '__main__':
-#     app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)
