@@ -25,10 +25,11 @@ The Entertainment Recommender is a Flask-based web application that suggests boo
     pip install -r requirements.txt
     ```
 4. **Set Up OpenAI API Key**:
+   In `.env` replace `your_openai_api_key_here` with your actual OpenAI API key.
      ```
      OPENAI_API_KEY=your_openai_api_key
      ```
-5. **Run the Application**:
+6. **Run the Application**:
      ```bash
      flask --app app run --port 5002 --host 0.0.0.0 --debug
      ```
@@ -52,6 +53,7 @@ The Entertainment Recommender is a Flask-based web application that suggests boo
 - **static/**: Directory for static files like CSS.
   - `style.css`: The main stylesheet for the application.
 - **requirements.txt**: List of dependencies required to run the application.
+- **.env**: File containing environment variables like API key.
 - **tests/**: Directory containing test cases for the application.
   - `test_app.py`: Unit tests for various components of the application, including preference handling and recommendations generation.
 
@@ -60,6 +62,7 @@ The Entertainment Recommender is a Flask-based web application that suggests boo
 - **OpenAI API**: Utilized for generating entertainment recommendations.
 - **HTML/CSS**: Frontend structure and styling.
 - **Python**: Backend development.
+- **dotenv**: For loading environment variables from a `.env` file.
 
 ## Testing
 The application includes a suite of unit tests to ensure functionality:
