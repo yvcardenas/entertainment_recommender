@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
+from dotenv import load_dotenv
 import json
 import openai
 import os
@@ -8,11 +9,13 @@ app = Flask(__name__, template_folder='./templates')
 app.secret_key = 'supersecretkey' # Secret key for session management
 user_data_path = 'user_data' # Dictionary to store user preferences
 
+# Load environment variables from .env file 
+load_dotenv()
 # Ensure user_data directory exists
 os.makedirs(user_data_path, exist_ok=True)
 
 # Placeholder for OpenAI key and function
-openai.api_key = 'INSERT API KEY HERE'
+openai.api_key = os.getenv('OPENAI_API_KEY')
 
 # Base class for Entertainment items
 class Entertainment:
