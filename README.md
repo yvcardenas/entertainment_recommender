@@ -6,6 +6,8 @@ The Entertainment Recommender is a Flask-based web application that suggests boo
 -	**User Preferences**: Users can input their favorite books, movies, and songs along with their genres.
 -	**Personalized Recommendations**: The app generates recommendations based on the user’s preferences using the OpenAI API.
 -	**User-Friendly Interface**: A clean and intuitive interface makes it easy for users to add preferences and view recommendations.
+-    **Data Persistence**: User preferences are stored in JSON files, ensuring data is saved and retrievable across sessions.
+-    **Modular and Testable Code**: The application uses classes and methods, making it modular and easy to maintain.
 
 ## Installations
 1. **Clone the respository**:
@@ -50,11 +52,31 @@ The Entertainment Recommender is a Flask-based web application that suggests boo
 - **static/**: Directory for static files like CSS.
   - `style.css`: The main stylesheet for the application.
 - **requirements.txt**: List of dependencies required to run the application.
+- **tests/**: Directory containing test cases for the application.
+  - `test_app.py`: Unit tests for various components of the application, including preference handling and recommendations generation.
 
 ## Technologies Used
 - **Flask**: A lightweight WSGI web application framework in Python.
 - **OpenAI API**: Utilized for generating entertainment recommendations.
 - **HTML/CSS**: Frontend structure and styling.
+- **Python**: Backend development.
+
+## Testing
+The application includes a suite of unit tests to ensure functionality:
+
+1. **Setup Tests**: 
+   - Before each test, the environment is set up with a Flask test client and necessary resources.
+
+2. **Functionality Tests**:
+   - Tests for setting and adding users, adding preferences, and generating recommendations.
+
+3. **Validation Tests**:
+   - Tests for input validation to ensure only valid data is processed.
+
+To run the tests, use the following command in the root of the project:
+```bash
+python -m unittest discover -s tests
+```
 
 ## Contact
 
