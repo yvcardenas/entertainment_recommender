@@ -102,7 +102,7 @@ def get_chatgpt_recommendations(preferences):
                 {"role": "user", "content": prompt}
             ],
             max_tokens=1000,
-            temperature=0.5
+            temperature=0.7
         )
         print("API Response:", response)
         if response.choices and len(response.choices) > 0:
