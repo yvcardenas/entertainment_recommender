@@ -1,21 +1,17 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from dotenv import load_dotenv
 import json
 import openai
 import os
+from openai import OpenAI
 
 # Initialize the Flask app and OpenAI API key
 app = Flask(__name__, template_folder='./templates')
 app.secret_key = 'supersecretkey' # Secret key for session management
 user_data_path = 'user_data' # Dictionary to store user preferences
 
-# Load environment variables from .env file 
-load_dotenv()
+client = OpenAI()
 # Ensure user_data directory exists
 os.makedirs(user_data_path, exist_ok=True)
-
-# Placeholder for OpenAI key and function
-openai.api_key = os.getenv('OPENAI_API_KEY')
 
 # Base class for Entertainment items
 class Entertainment:
@@ -95,13 +91,13 @@ def get_chatgpt_recommendations(preferences):
     print("Prompt: ", prompt)
 
     try:
-        response = openai.chat.completions.create(
-            model="gpt-3.5-turbo",
+        response = client.chat.completions.create(
+            model="gpt-4o",
             messages=[
                 {"role": "system", "content": "You are a helpful assistant."},
                 {"role": "user", "content": prompt}
             ],
-            max_tokens=1000,
+            max_tokens=10000,
             temperature=0.7
         )
         print("API Response:", response)
@@ -111,6 +107,18 @@ def get_chatgpt_recommendations(preferences):
             recommendations = "No recommendations available."
     except Exception as e:
         print(f"Error getting recommendations: {e}")
+        recommendations = "An error occurred while getting recommendations."
+    except openai.error.InvalidRequestError as e:
+        print(f"Invalid Request Error: {e}")
+        recommendations = "An invalid request error occurred."
+    except openai.error.AuthenticationError as e:
+        print(f"Authentication Error: {e}")
+        recommendations = "An authentication error occurred."
+    except openai.error.OpenAIError as e:
+        print(f"OpenAI Error: {e}")
+        recommendations = "An OpenAI error occurred."
+    except Exception as e:
+        print(f"General Error: {e}")
         recommendations = "An error occurred while getting recommendations."
     return recommendations
 
