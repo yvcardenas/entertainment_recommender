@@ -97,7 +97,7 @@ def get_chatgpt_recommendations(preferences):
                 {"role": "system", "content": "You are a helpful assistant."},
                 {"role": "user", "content": prompt}
             ],
-            max_tokens=10000,
+            max_tokens=4000,
             temperature=0.7
         )
         print("API Response:", response)
