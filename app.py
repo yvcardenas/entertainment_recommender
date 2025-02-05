@@ -83,7 +83,7 @@ class User:
 
 # Function to get recommendations from ChatGPT
 def get_chatgpt_recommendations(preferences):
-    prompt = "Based on the following preferences, recommend one book, one movie, and one song. Use this example as a format\'Based on the romance genre preference, here are some recommendations for you:\n\nBook: \"Pride and Prejudice\" by Jane Austen - A classic romance novel with a strong female protagonist and a timeless love story.\n\nMovie: \"The Notebook\" - A romantic drama that tells the story of a young couple\'s love and the challenges they face as they grow older.\n\nSong: \"Perfect\" by Ed Sheeran - A beautiful love song that captures the feeling of finding someone who is perfect for you.\':\n"
+    prompt = "Based on the following preferences, recommend one book, one movie, and one song. Please do not use any of the preferences provided. Use this example as a format\'Based on the romance genre preference, here are some recommendations for you:\n\nBook: \"Pride and Prejudice\" by Jane Austen - A classic romance novel with a strong female protagonist and a timeless love story.\n\nMovie: \"The Notebook\" - A romantic drama that tells the story of a young couple\'s love and the challenges they face as they grow older.\n\nSong: \"Perfect\" by Ed Sheeran - A beautiful love song that captures the feeling of finding someone who is perfect for you.\':\n"
     for category, items in preferences.items():
         prompt += f"{category.capitalize()}:\n"
         prompt += ''.join([f" - {item['title']} ({item['genre']})\n" for item in items])
@@ -98,7 +98,7 @@ def get_chatgpt_recommendations(preferences):
                 {"role": "user", "content": prompt}
             ],
             max_tokens=4000,
-            temperature=0.7
+            temperature= 0.8 # Controls the randomness of the text generated, A value from 0-2 though most often between 0-1
         )
         print("API Response:", response)
         if response.choices and len(response.choices) > 0:
