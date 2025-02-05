@@ -83,4 +83,4 @@ python -m unittest discover -s tests
 
 ## Contact
 
-For questions or feedback, please reach out at [ygcrds@gmail.com].
+For questions or feedback, please reach out at [ygcrdns@gmail.com].
