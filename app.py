@@ -11,7 +11,6 @@ load_dotenv()
 # Retrieve the OpenAI API key from the environment
 openai_api_key = os.getenv('OPENAI_API_KEY')
 
-
 # Initialize the Flask app and OpenAI API key
 app = Flask(__name__, template_folder='./templates')
 app.secret_key = 'supersecretkey' # Secret key for session management
