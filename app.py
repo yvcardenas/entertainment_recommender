@@ -3,13 +3,21 @@ import json
 import openai
 import os
 from openai import OpenAI
+from dotenv import load_dotenv
+
+# Load environment variable from .env file
+load_dotenv()
+
+# Retrieve the OpenAI API key from the environment
+openai_api_key = os.getenv('OPENAI_API_KEY')
+
 
 # Initialize the Flask app and OpenAI API key
 app = Flask(__name__, template_folder='./templates')
 app.secret_key = 'supersecretkey' # Secret key for session management
 user_data_path = 'user_data' # Dictionary to store user preferences
 
-client = OpenAI()
+client = OpenAI(api_key=openai_api_key)
 # Ensure user_data directory exists
 os.makedirs(user_data_path, exist_ok=True)
 
